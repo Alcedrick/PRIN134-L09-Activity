@@ -37,9 +37,9 @@
       <li>Stir in boiling water until well combined.</li>
       <li>Pour batter into the cake pan and bake for 30-35 minutes.</li>
       <li>Let cool before serving. Enjoy!</li>
-      <button id="check-btn">Check</button>
-      <button id="reset-btn">Reset</button>
     </ol>
+    <button id="check-btn">Check</button>
+    <button id="reset-btn">Reset</button>
   </div>
   <script>
 
@@ -60,11 +60,11 @@
     checkInstructionsButton.addEventListener('click', checkInstructions);
     function checkInstructions() {
       setTimeout(() => {
-        const instructions = instructionsList.children;
-          for (let i = 0; i < instructions.length; i++) {
-            instructions[i].classList.toggle("is-done");
-          }
-        }, 3000);
+        const instructions = instructionsList.querySelectorAll('li');
+        for (let i = 0; i < instructions.length; i++) {
+          instructions[i].classList.toggle('is-done'); 
+        }
+      }, 3000);
     }
 
     const resetInstructionsButton = document.getElementById('reset-btn');
@@ -81,27 +81,28 @@
     const ingredientsHeader = document.getElementById('ingredients-header');
     ingredientsHeader.addEventListener('click', animateIngredients);
     function animateIngredients() {
-      ingredientsHeader.classList.add('animate__animated', 'animate__bounce'); 
-      setTimeout(() => {
-        ingredientsHeader.classList.remove('animate__animated', 'animate__bounce');
-      });
+        this.classList.add('animate__animated', 'animate__bounce');
+        this.addEventListener('animationend', function() {
+            this.classList.remove('animate__animated', 'animate__bounce');
+        }, { once: true });
     }
+
     const instructionsHeader = document.getElementById('instructions-header');
     instructionsHeader.addEventListener('click', animateInstructions);
     function animateInstructions() {
-      instructionsHeader.classList.add('animate__animated', 'animate__bounce');
-      setTimeout(() => {
-        instructionsHeader.classList.remove('animate__animated', 'animate__bounce');
-      } );
+        this.classList.add('animate__animated', 'animate__flash');
+        this.addEventListener('animationend', function() {
+            this.classList.remove('animate__animated', 'animate__flash');
+        }, { once: true });
     }
 
     const cakeImage = document.getElementById('cake');
     cakeImage.addEventListener('click', animateImage);
     function animateImage() {
-      cakeImage.classList.add('animate__animated', 'animate__bounce');
-      setTimeout(() => {
-        cakeImage.classList.remove('animate__animated', 'animate__bounce');
-      } );
+        this.classList.add('animate__animated', 'animate__jello');
+        this.addEventListener('animationend', function() {
+            this.classList.remove('animate__animated', 'animate__jello');
+        }, { once: true });
     }
     
   </script>
