@@ -14,7 +14,7 @@
   <div id="recipe-container" class="container">
     <h1 id="recipe-title">Chocolate Cake Recipe</h1>
     <img id="cake" src="img/chocolate-cake.jpg" alt="Chocolate Cake" width="100%">
-    <h2 class="headers">Ingredients</h2>
+    <h2 class="ingredients-header" id="ingredients-header">Ingredients</h2>
     <ul id="recipe-ingredients">
       <li>1 cup all-purpose flour</li>
       <li>1 cup sugar</li>
@@ -27,8 +27,9 @@
       <li>1 egg</li>
       <li>1/2 tsp vanilla extract</li>
       <li>1/2 cup boiling water</li>
+      <button id="highlight-btn">Highlight</button>
     </ul>
-    <h2 class="headers">Instructions</h2>
+    <h2 class="instructions-header" id="instructions-header">Instructions</h2>
     <ol id="recipe-instructions">
       <li>Preheat oven to 350°F (175°C). Grease and flour a cake pan.</li>
       <li class="active">In a bowl, mix flour, sugar, cocoa powder, baking powder, baking soda, and salt.</li>
@@ -36,8 +37,74 @@
       <li>Stir in boiling water until well combined.</li>
       <li>Pour batter into the cake pan and bake for 30-35 minutes.</li>
       <li>Let cool before serving. Enjoy!</li>
+      <button id="check-btn">Check</button>
+      <button id="reset-btn">Reset</button>
     </ol>
   </div>
+  <script>
+
+    const ingredientsList = document.getElementById('recipe-ingredients');
+    const highlightBTN = document.getElementById('highlight-btn');
+    highlightBTN.addEventListener('click', highlight_ingredients)
+    function highlight_ingredients() {
+      const ingredients = ingredientsList.children;
+      for (let i = 0; i < ingredients.length; i++) {
+        if (i % 2 === 0) {
+          ingredients[i].style.backgroundColor = 'yellow';
+        }
+      }
+    };
+
+    const instructionsList = document.getElementById('recipe-instructions');
+    const checkInstructionsButton = document.getElementById('check-btn');
+    checkInstructionsButton.addEventListener('click', checkInstructions);
+    function checkInstructions() {
+      setTimeout(() => {
+        const instructions = instructionsList.children;
+          for (let i = 0; i < instructions.length; i++) {
+            instructions[i].classList.toggle("is-done");
+          }
+        }, 3000);
+    }
+
+    const resetInstructionsButton = document.getElementById('reset-btn');
+    resetInstructionsButton.addEventListener('click', resetInstructions);
+    function resetInstructions() {
+      setTimeout(() => {
+        const instructions = instructionsList.children;
+          for (let i = 0; i < instructions.length; i++) {
+            instructions[i].classList.remove("instructions","is-done");
+          }
+        }, 3000);
+    }
+
+    const ingredientsHeader = document.getElementById('ingredients-header');
+    ingredientsHeader.addEventListener('click', animateIngredients);
+    function animateIngredients() {
+      ingredientsHeader.classList.add('animate__animated', 'animate__bounce'); 
+      setTimeout(() => {
+        ingredientsHeader.classList.remove('animate__animated', 'animate__bounce');
+      });
+    }
+    const instructionsHeader = document.getElementById('instructions-header');
+    instructionsHeader.addEventListener('click', animateInstructions);
+    function animateInstructions() {
+      instructionsHeader.classList.add('animate__animated', 'animate__bounce');
+      setTimeout(() => {
+        instructionsHeader.classList.remove('animate__animated', 'animate__bounce');
+      } );
+    }
+
+    const cakeImage = document.getElementById('cake');
+    cakeImage.addEventListener('click', animateImage);
+    function animateImage() {
+      cakeImage.classList.add('animate__animated', 'animate__bounce');
+      setTimeout(() => {
+        cakeImage.classList.remove('animate__animated', 'animate__bounce');
+      } );
+    }
+    
+  </script>
 </body>
 
 </html>

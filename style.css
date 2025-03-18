@@ -35,9 +35,12 @@ ol li {
 .is-done {
   text-decoration: line-through;
 }
-.active {
-  font-weight: bold;
-}
+
 .highlight {
   background-color: yellow;
 }
+
+#highlight-btn {
+  margin-top: 5px;
+}
+
